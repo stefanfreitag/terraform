@@ -1,0 +1,31 @@
+{
+  "name": "terraform-examples",
+  "version": "0.1.0",
+  "description": "Terraform examples",
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
+    "husky": "^4.2.5"
+  },
+  "keywords": [
+    "aws",
+    "cdktf",
+    "terraform"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefanfreitag/terraform.git"
+  },
+  "author": {
+    "name": "Stefan Freitag",
+    "email": "stefan@stefreitag.de"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/stefanfreitag/terraform/issues"
+  }
+}
