@@ -11,6 +11,7 @@ import {
   DataAwsRegion,
   DataAwsCallerIdentity,
 } from "./.gen/providers/aws";
+import { TerraformOutput } from "cdktf";
 
 export class HelloWorldApiGw extends Construct {
   constructor(scope: Construct, name: string) {
@@ -44,14 +45,20 @@ export class HelloWorldApiGw extends Construct {
       httpMethod: "GET",
       authorization: "NONE",
     });
-    new ApiGatewayIntegration(this, "api-gateway-integration", {
-      restApiId: api.id!,
-      resourceId: resource.id!,
-      httpMethod: method.httpMethod,
-      integrationHttpMethod: "POST",
-      type: "AWS_PROXY",
-      uri: fn.invokeArn,
-    });
+
+    const integration = new ApiGatewayIntegration(
+      this,
+      "api-gateway-integration",
+      {
+        restApiId: api.id!,
+        resourceId: resource.id!,
+        httpMethod: method.httpMethod,
+        integrationHttpMethod: "POST",
+        type: "AWS_PROXY",
+        uri: fn.invokeArn,
+        dependsOn: [method],
+      }
+    );
 
     const region = new DataAwsRegion(this, "region");
     const userId = new DataAwsCallerIdentity(this, "userId");
@@ -72,17 +79,20 @@ export class HelloWorldApiGw extends Construct {
         resource.path,
     });
 
-    new ApiGatewayDeployment(this, "api-gateway-deployment", {
-      restApiId: api.id!,
-      stageName: "Production",
-      stageDescription: "Production Environment",
-      description: "Hello World - Production environment deployment",
-    });
+    const deployment = new ApiGatewayDeployment(
+      this,
+      "api-gateway-deployment",
+      {
+        restApiId: api.id!,
+        stageName: "Production",
+        stageDescription: "Production Environment",
+        description: "Hello World - Production environment deployment",
+        dependsOn: [method, integration],
+      }
+    );
 
-    /**
     new TerraformOutput(this, "endpoint", {
-      value: deployment.invokeUrl
+      value: deployment.invokeUrl,
     });
-     */
   }
 }
