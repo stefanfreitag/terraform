@@ -1,5 +1,11 @@
 {
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "packageNames": [ "cdktf-cli", "cdktf"],
+      "extends": ["schedule:monthly"]
+    }
   ]
 }
