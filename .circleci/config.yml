@@ -1,17 +1,28 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1.6
+  node: circleci/node@4.1.0
 jobs:
-  build-and-test:
-    working_directory: ~/cdktf-aws-lambda-helloWorld/
+  build-and-test:     
     executor:
-      name: node/default
+      name: node/default      
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm test
+      - run: |
+          wget https://releases.hashicorp.com/terraform/0.13.4/terraform_0.13.4_linux_amd64.zip
+          unzip terraform_0.13.4_linux_amd64.zip
+          sudo mv terraform /usr/bin
+          sudo chmod a+x /usr/bin/terraform
+      - run:
+          command: sudo npm install -g cdktf-cli cdktf      
+      - node/install-packages:
+          app-dir: cdktf-aws-lambda-helloWorld
+      - run:
+          command: cdktf get
+          working_directory: cdktf-aws-lambda-helloWorld      
+      - run:
+          command: npm run test
+          working_directory: cdktf-aws-lambda-helloWorld
+         
 workflows:
     build-and-test:
       jobs:
