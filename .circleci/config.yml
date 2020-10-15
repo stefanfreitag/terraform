@@ -5,6 +5,7 @@ jobs:
   build-and-test:     
     executor:
       name: node/default      
+<<<<<<< HEAD
     steps:
       - checkout
       - run: |
@@ -20,6 +21,13 @@ jobs:
           command: cdktf get
           working_directory: cdktf-aws-lambda-helloWorld      
       - run:
+=======
+    steps:      
+      - checkout
+      - node/install-packages:
+          app-dir: cdktf-aws-lambda-helloWorld
+      - run:
+>>>>>>> fix_circleci_job
           command: npm run test
           working_directory: cdktf-aws-lambda-helloWorld
          
