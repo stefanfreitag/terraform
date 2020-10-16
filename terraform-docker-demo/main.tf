@@ -1,13 +1,13 @@
-resource "docker_image" "nginx" {
-  name         = "nginx:latest"
+resource "docker_image" "flask-hello-world" {
+  name         = "stefanfreitag/flask-hello-world:0.0.2"
   keep_locally = false
 }
 
-resource "docker_container" "nginx" {
-  image = docker_image.nginx.latest
-  name  = "tutorial"
+resource "docker_container" "flask-hello-world" {
+  image = docker_image.flask-hello-world.latest
+  name  = "flask-hello-world"
   ports {
-    internal = 80
-    external = 8000
+    internal = 5000
+    external = 80
   }
 }
