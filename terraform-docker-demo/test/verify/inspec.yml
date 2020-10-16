@@ -1,0 +1,8 @@
+name: test-verify
+title: InSpec Profile
+maintainer: Stefan Freitag
+copyright: Stefan Freitag
+copyright_email: stefan@stefreitag.de
+license: Apache-2.0
+summary: An InSpec Compliance Profile
+version: 0.1.0
