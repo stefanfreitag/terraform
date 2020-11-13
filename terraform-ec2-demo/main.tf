@@ -1,5 +1,5 @@
 provider "aws" {
-  version = "3.14.1"
+  version = "3.15.0"
   region  = "eu-central-1"
   profile = "cdk"
 
