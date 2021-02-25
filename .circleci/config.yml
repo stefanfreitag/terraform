@@ -13,7 +13,7 @@ jobs:
           sudo mv terraform /usr/bin
           sudo chmod a+x /usr/bin/terraform
       - run:
-          command: sudo npm install -g cdktf-cli cdktf      
+          command: sudo npm install -g cdktf-cli cdktf@next constructs
       - node/install-packages:
           app-dir: cdktf-aws-lambda-helloWorld
       - run:

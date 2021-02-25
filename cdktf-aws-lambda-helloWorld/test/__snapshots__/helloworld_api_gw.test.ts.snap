@@ -10,119 +10,119 @@ exports[`snapshot test 1`] = `
   },
   \\"resource\\": {
     \\"aws_iam_role\\": {
-      \\"test_apigw_basiclambdarole_B5B06285\\": {
+      \\"api-gw_basic_lambda_role_2FDCC609\\": {
         \\"assume_role_policy\\": \\"{ \\\\\\"Version\\\\\\": \\\\\\"2012-10-17\\\\\\", \\\\\\"Statement\\\\\\": [ {\\\\n       \\\\\\"Action\\\\\\": \\\\\\"sts:AssumeRole\\\\\\", \\\\\\"Principal\\\\\\": { \\\\\\"Service\\\\\\": \\\\\\"lambda.amazonaws.com\\\\\\" }, \\\\\\"Effect\\\\\\": \\\\\\"Allow\\\\\\", \\\\\\"Sid\\\\\\": \\\\\\"\\\\\\" } ] }\\",
         \\"description\\": \\"Basic Lambda Execution Role\\",
         \\"//\\": {
           \\"metadata\\": {
             \\"path\\": \\"test/api-gw/basic_lambda_role\\",
-            \\"uniqueId\\": \\"test_apigw_basiclambdarole_B5B06285\\"
+            \\"uniqueId\\": \\"api-gw_basic_lambda_role_2FDCC609\\"
           }
         }
       }
     },
     \\"aws_lambda_function\\": {
-      \\"test_apigw_lambdahelloworld_E21B6A04\\": {
+      \\"api-gw_lambda-hello-world_E39B2CB6\\": {
         \\"description\\": \\"A simple Hello world Lambda Function\\",
         \\"filename\\": \\"../hello_world.zip\\",
         \\"function_name\\": \\"helloWorld\\",
         \\"handler\\": \\"hello_world.lambda_handler\\",
-        \\"role\\": \\"\${aws_iam_role.test_apigw_basiclambdarole_B5B06285.arn}\\",
+        \\"role\\": \\"\${aws_iam_role.api-gw_basic_lambda_role_2FDCC609.arn}\\",
         \\"runtime\\": \\"python3.7\\",
         \\"timeout\\": 60,
         \\"//\\": {
           \\"metadata\\": {
             \\"path\\": \\"test/api-gw/lambda-hello-world\\",
-            \\"uniqueId\\": \\"test_apigw_lambdahelloworld_E21B6A04\\"
+            \\"uniqueId\\": \\"api-gw_lambda-hello-world_E39B2CB6\\"
           }
         }
       }
     },
     \\"aws_api_gateway_rest_api\\": {
-      \\"test_apigw_apigateway_4E70AAF9\\": {
+      \\"api-gw_api-gateway_FF827279\\": {
         \\"name\\": \\"rest-api\\",
         \\"//\\": {
           \\"metadata\\": {
             \\"path\\": \\"test/api-gw/api-gateway\\",
-            \\"uniqueId\\": \\"test_apigw_apigateway_4E70AAF9\\"
+            \\"uniqueId\\": \\"api-gw_api-gateway_FF827279\\"
           }
         }
       }
     },
     \\"aws_api_gateway_resource\\": {
-      \\"test_apigw_apigatewayresource_D056EDEA\\": {
-        \\"parent_id\\": \\"\${aws_api_gateway_rest_api.test_apigw_apigateway_4E70AAF9.root_resource_id}\\",
+      \\"api-gw_api-gateway-resource_A906FC7B\\": {
+        \\"parent_id\\": \\"\${aws_api_gateway_rest_api.api-gw_api-gateway_FF827279.root_resource_id}\\",
         \\"path_part\\": \\"hello\\",
-        \\"rest_api_id\\": \\"\${aws_api_gateway_rest_api.test_apigw_apigateway_4E70AAF9.id}\\",
+        \\"rest_api_id\\": \\"\${aws_api_gateway_rest_api.api-gw_api-gateway_FF827279.id}\\",
         \\"//\\": {
           \\"metadata\\": {
             \\"path\\": \\"test/api-gw/api-gateway-resource\\",
-            \\"uniqueId\\": \\"test_apigw_apigatewayresource_D056EDEA\\"
+            \\"uniqueId\\": \\"api-gw_api-gateway-resource_A906FC7B\\"
           }
         }
       }
     },
     \\"aws_api_gateway_method\\": {
-      \\"test_apigw_apigatewaymethod_D543AC51\\": {
+      \\"api-gw_api-gateway-method_85CFF1EB\\": {
         \\"authorization\\": \\"NONE\\",
         \\"http_method\\": \\"GET\\",
-        \\"resource_id\\": \\"\${aws_api_gateway_resource.test_apigw_apigatewayresource_D056EDEA.id}\\",
-        \\"rest_api_id\\": \\"\${aws_api_gateway_rest_api.test_apigw_apigateway_4E70AAF9.id}\\",
+        \\"resource_id\\": \\"\${aws_api_gateway_resource.api-gw_api-gateway-resource_A906FC7B.id}\\",
+        \\"rest_api_id\\": \\"\${aws_api_gateway_rest_api.api-gw_api-gateway_FF827279.id}\\",
         \\"//\\": {
           \\"metadata\\": {
             \\"path\\": \\"test/api-gw/api-gateway-method\\",
-            \\"uniqueId\\": \\"test_apigw_apigatewaymethod_D543AC51\\"
+            \\"uniqueId\\": \\"api-gw_api-gateway-method_85CFF1EB\\"
           }
         }
       }
     },
     \\"aws_api_gateway_integration\\": {
-      \\"test_apigw_apigatewayintegration_F4EDBBD6\\": {
-        \\"http_method\\": \\"GET\\",
+      \\"api-gw_api-gateway-integration_FCD3929B\\": {
+        \\"http_method\\": \\"\${aws_api_gateway_method.api-gw_api-gateway-method_85CFF1EB.http_method}\\",
         \\"integration_http_method\\": \\"POST\\",
-        \\"resource_id\\": \\"\${aws_api_gateway_resource.test_apigw_apigatewayresource_D056EDEA.id}\\",
-        \\"rest_api_id\\": \\"\${aws_api_gateway_rest_api.test_apigw_apigateway_4E70AAF9.id}\\",
+        \\"resource_id\\": \\"\${aws_api_gateway_resource.api-gw_api-gateway-resource_A906FC7B.id}\\",
+        \\"rest_api_id\\": \\"\${aws_api_gateway_rest_api.api-gw_api-gateway_FF827279.id}\\",
         \\"type\\": \\"AWS_PROXY\\",
-        \\"uri\\": \\"\${aws_lambda_function.test_apigw_lambdahelloworld_E21B6A04.invoke_arn}\\",
+        \\"uri\\": \\"\${aws_lambda_function.api-gw_lambda-hello-world_E39B2CB6.invoke_arn}\\",
         \\"depends_on\\": [
-          \\"aws_api_gateway_method.test_apigw_apigatewaymethod_D543AC51\\"
+          \\"aws_api_gateway_method.api-gw_api-gateway-method_85CFF1EB\\"
         ],
         \\"//\\": {
           \\"metadata\\": {
             \\"path\\": \\"test/api-gw/api-gateway-integration\\",
-            \\"uniqueId\\": \\"test_apigw_apigatewayintegration_F4EDBBD6\\"
+            \\"uniqueId\\": \\"api-gw_api-gateway-integration_FCD3929B\\"
           }
         }
       }
     },
     \\"aws_lambda_permission\\": {
-      \\"test_apigw_apigwlambdapermission_6E2E14F7\\": {
+      \\"api-gw_apigw-lambda-permission_6C8E0899\\": {
         \\"action\\": \\"lambda:InvokeFunction\\",
-        \\"function_name\\": \\"helloWorld\\",
+        \\"function_name\\": \\"\${aws_lambda_function.api-gw_lambda-hello-world_E39B2CB6.function_name}\\",
         \\"principal\\": \\"apigateway.amazonaws.com\\",
-        \\"source_arn\\": \\"arn:aws:execute-api:\${data.aws_region.test_apigw_region_75D4FC1C.name}:\${data.aws_caller_identity.test_apigw_userId_A866FA9A.account_id}:\${aws_api_gateway_rest_api.test_apigw_apigateway_4E70AAF9.id}/*/GET\${aws_api_gateway_resource.test_apigw_apigatewayresource_D056EDEA.path}\\",
+        \\"source_arn\\": \\"arn:aws:execute-api:\${data.aws_region.api-gw_region_DF92C267.name}:\${data.aws_caller_identity.api-gw_userId_A49474DD.account_id}:\${aws_api_gateway_rest_api.api-gw_api-gateway_FF827279.id}/*/\${aws_api_gateway_method.api-gw_api-gateway-method_85CFF1EB.http_method}\${aws_api_gateway_resource.api-gw_api-gateway-resource_A906FC7B.path}\\",
         \\"//\\": {
           \\"metadata\\": {
             \\"path\\": \\"test/api-gw/apigw-lambda-permission\\",
-            \\"uniqueId\\": \\"test_apigw_apigwlambdapermission_6E2E14F7\\"
+            \\"uniqueId\\": \\"api-gw_apigw-lambda-permission_6C8E0899\\"
           }
         }
       }
     },
     \\"aws_api_gateway_deployment\\": {
-      \\"test_apigw_apigatewaydeployment_8BAE2D89\\": {
+      \\"api-gw_api-gateway-deployment_EC63EEF7\\": {
         \\"description\\": \\"Hello World - Production environment deployment\\",
-        \\"rest_api_id\\": \\"\${aws_api_gateway_rest_api.test_apigw_apigateway_4E70AAF9.id}\\",
+        \\"rest_api_id\\": \\"\${aws_api_gateway_rest_api.api-gw_api-gateway_FF827279.id}\\",
         \\"stage_description\\": \\"Production Environment\\",
         \\"stage_name\\": \\"Production\\",
         \\"depends_on\\": [
-          \\"aws_api_gateway_method.test_apigw_apigatewaymethod_D543AC51\\",
-          \\"aws_api_gateway_integration.test_apigw_apigatewayintegration_F4EDBBD6\\"
+          \\"aws_api_gateway_method.api-gw_api-gateway-method_85CFF1EB\\",
+          \\"aws_api_gateway_integration.api-gw_api-gateway-integration_FCD3929B\\"
         ],
         \\"//\\": {
           \\"metadata\\": {
             \\"path\\": \\"test/api-gw/api-gateway-deployment\\",
-            \\"uniqueId\\": \\"test_apigw_apigatewaydeployment_8BAE2D89\\"
+            \\"uniqueId\\": \\"api-gw_api-gateway-deployment_EC63EEF7\\"
           }
         }
       }
@@ -130,29 +130,29 @@ exports[`snapshot test 1`] = `
   },
   \\"data\\": {
     \\"aws_region\\": {
-      \\"test_apigw_region_75D4FC1C\\": {
+      \\"api-gw_region_DF92C267\\": {
         \\"//\\": {
           \\"metadata\\": {
             \\"path\\": \\"test/api-gw/region\\",
-            \\"uniqueId\\": \\"test_apigw_region_75D4FC1C\\"
+            \\"uniqueId\\": \\"api-gw_region_DF92C267\\"
           }
         }
       }
     },
     \\"aws_caller_identity\\": {
-      \\"test_apigw_userId_A866FA9A\\": {
+      \\"api-gw_userId_A49474DD\\": {
         \\"//\\": {
           \\"metadata\\": {
             \\"path\\": \\"test/api-gw/userId\\",
-            \\"uniqueId\\": \\"test_apigw_userId_A866FA9A\\"
+            \\"uniqueId\\": \\"api-gw_userId_A49474DD\\"
           }
         }
       }
     }
   },
   \\"output\\": {
-    \\"test_apigw_endpoint_5C407DAB\\": {
-      \\"value\\": \\"\${aws_api_gateway_deployment.test_apigw_apigatewaydeployment_8BAE2D89.invoke_url}\\"
+    \\"api-gw_endpoint_F5D5BFC6\\": {
+      \\"value\\": \\"\${aws_api_gateway_deployment.api-gw_api-gateway-deployment_EC63EEF7.invoke_url}\\"
     }
   }
 }"
